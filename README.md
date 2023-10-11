@@ -59,6 +59,3 @@ $ ./testing
 you should get an windows with gray image representing its `green color plane`
 
 ![screenshot of the IDE](images/screenshot.png)
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)

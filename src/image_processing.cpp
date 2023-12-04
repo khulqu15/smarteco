@@ -101,9 +101,20 @@ void processVideo() {
         return;
     }
 
+    int frame_width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+    int frame_height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+    cv::VideoWriter videoWriter("./videos/output.mp4", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, cv::Size(frame_width, frame_height), true);
+
+    if (!videoWriter.isOpened()) {
+        cout << "Error: Could not open the video writer." << endl;
+        return;
+    }
+
     cv::Mat frame;
     while (true) {
         cap >> frame; // Membaca frame dari webcam
+        videoWriter.write(frame);
 
         if (frame.empty()) {
             cout << "Error: Could not read frame." << endl;
@@ -148,6 +159,7 @@ void processVideo() {
     }
 
     cap.release(); // Menutup kamera
+    videoWriter.release();
     cv::destroyAllWindows(); // Menutup semua jendela
 }
 
